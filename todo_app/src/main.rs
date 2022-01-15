@@ -38,22 +38,28 @@ impl TodoList {
 
 fn main() {
     let  arguments: Vec<String>  = env::args().collect();
-    let command = arguments[1].clone();
-    let todo_item_1 = "first item".to_string();
-    let todo_item_2 = "second item".to_string();
-    let mut todo_list = TodoList::new();
-
-    todo_list.add_to_list(todo_item_1);
-    todo_list.add_to_list(todo_item_2);
-
-    if command== "get" {
-        todo_list.print();
+    if arguments.len()==1{
+        panic!("must provide a command")
     }
-    else if command == "add"{
-        let task=arguments[2].clone();
+    else {
+        let command = arguments[1].clone();
+        let todo_item_1 = "first item".to_string();
+        let todo_item_2 = "second item".to_string();
+        let mut todo_list = TodoList::new();
 
-        todo_list.add_to_list(task);
-        todo_list.print();
+        todo_list.add_to_list(todo_item_1);
+        todo_list.add_to_list(todo_item_2);
+
+        if command== "get" {
+            todo_list.print();
+        }
+        else if command == "add"{
+            let task=arguments[2].clone();
+
+            todo_list.add_to_list(task);
+            todo_list.print();
+        }
     }
+    
 
 }
